@@ -1,6 +1,8 @@
-import 'package:bluestack_demo_flutter/components/loading_indicator.dart';
-import 'package:bluestack_demo_flutter/config/app_config.dart';
-import 'package:bluestack_demo_flutter/services/logger_service.dart';
+import 'dart:async';
+
+import 'package:bluestack_flutter_demo/components/loading_indicator.dart';
+import 'package:bluestack_flutter_demo/config/app_config.dart';
+import 'package:bluestack_flutter_demo/services/logger_service.dart';
 import 'package:bluestack_sdk_flutter/bluestack_sdk_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -60,31 +62,31 @@ class _InterstitialAdMenuState extends State<InterstitialAdMenu> {
 
   void _setupAdLoadCallbacks() {
     // Interstitial ad load callbacks
-    _interstitialAd?.setLoadEventListener(InterstitialAdLoadEventListener(
-      onAdLoaded: _handleInterstitialLoaded,
-      onAdFailedToLoad: _handleInterstitialFailedToLoad,
-    ));
+    _interstitialAd?.setLoadEventListener(
+      InterstitialAdLoadEventListener(
+        onAdLoaded: _handleInterstitialLoaded,
+        onAdFailedToLoad: _handleInterstitialFailedToLoad,
+      ),
+    );
   }
 
   void _setupAdShowCallbacks() {
     // Interstitial ad show callbacks
-    _interstitialAd?.setShowEventListener(InterstitialAdShowEventListener(
-      onAdDisplayed: _handleInterstitialDisplayed,
-      onAdFailedToDisplay: _handleInterstitialFailedToDisplay,
-      onAdDismissed: _handleInterstitialDismissed,
-      onAdClicked: _handleInterstitialClicked,
-    ));
+    _interstitialAd?.setShowEventListener(
+      InterstitialAdShowEventListener(
+        onAdDisplayed: _handleInterstitialDisplayed,
+        onAdFailedToDisplay: _handleInterstitialFailedToDisplay,
+        onAdDismissed: _handleInterstitialDismissed,
+        onAdClicked: _handleInterstitialClicked,
+      ),
+    );
   }
 
   void _loadInterstitialAd() {
     _setupAdLoadCallbacks();
     setState(() => _isLoadingInterstitial = true);
     LoggerService.showLog(this, 'Loading Interstitial ad...');
-    _loadInterstitialAdAsync(); // no UI context passed
-  }
-
-  Future<void> _loadInterstitialAdAsync() async {
-    await _interstitialAd?.load(options: _options);
+    unawaited(_interstitialAd?.load(options: _options));
   }
 
   Future<void> _showInterstitialAd() async {

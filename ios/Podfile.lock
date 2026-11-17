@@ -1,0 +1,94 @@
+PODS:
+  - AppLovinSDK (13.6.4)
+  - BidMachine (3.8.2):
+    - BidMachine/Static (= 3.8.2)
+  - BidMachine/Static (3.8.2):
+    - OMSDK_Appodeal/Static (= 1.6.3.1)
+  - BlueStack-SDK (6.1.0):
+    - BlueStack-SDK/Core (= 6.1.0)
+  - BlueStack-SDK/Core (6.1.0)
+  - bluestack_sdk_flutter (1.0.0):
+    - BlueStack-SDK (= 6.1.0)
+    - Flutter
+  - BlueStackAppLovinAdapter (6.1.0):
+    - AppLovinSDK (= 13.6.4)
+    - BlueStack-SDK (< 6.2.0, >= 6.1.0)
+  - BlueStackBiddingAdapter (6.1.0):
+    - BlueStack-SDK (< 6.2.0, >= 6.0.1)
+    - BlueStackBiddingAdapter/Bidding (= 6.1.0)
+  - BlueStackBiddingAdapter/Bidding (6.1.0):
+    - BlueStack-SDK (< 6.2.0, >= 6.0.1)
+    - BlueStackBiddingAdapter/Prebid
+  - BlueStackBiddingAdapter/Prebid (6.1.0):
+    - BlueStack-SDK (< 6.2.0, >= 6.0.1)
+    - PrebidMobile (= 3.2.1)
+  - BlueStackBidMachineAdapter (6.1.1):
+    - BidMachine (= 3.8.2)
+    - BlueStack-SDK (< 6.2.0, >= 6.1.0)
+  - BlueStackEquativAdapter (6.0.1):
+    - BlueStack-SDK (>= 6.0.0)
+    - Equativ-Display-SDK (= 8.5.1)
+  - BlueStackGoogleAdapter (6.1.0):
+    - BlueStack-SDK (< 6.2.0, >= 6.1.0)
+    - Google-Mobile-Ads-SDK (<= 13.5.0, >= 13.0.0)
+  - Equativ-Display-SDK (8.5.1)
+  - Flutter (1.0.0)
+  - Google-Mobile-Ads-SDK (13.5.0):
+    - GoogleUserMessagingPlatform (>= 1.1)
+  - GoogleUserMessagingPlatform (3.1.0)
+  - OMSDK_Appodeal/Static (1.6.3.1)
+  - PrebidMobile (3.2.1):
+    - PrebidMobile/core (= 3.2.1)
+  - PrebidMobile/core (3.2.1)
+
+DEPENDENCIES:
+  - bluestack_sdk_flutter (from `.symlinks/plugins/bluestack_sdk_flutter/ios`)
+  - BlueStackAppLovinAdapter (= 6.1.0)
+  - BlueStackBiddingAdapter (= 6.1.0)
+  - BlueStackBidMachineAdapter (= 6.1.1)
+  - BlueStackEquativAdapter (= 6.0.1)
+  - BlueStackGoogleAdapter (= 6.1.0)
+  - Flutter (from `Flutter`)
+
+SPEC REPOS:
+  trunk:
+    - AppLovinSDK
+    - BidMachine
+    - BlueStack-SDK
+    - BlueStackAppLovinAdapter
+    - BlueStackBiddingAdapter
+    - BlueStackBidMachineAdapter
+    - BlueStackEquativAdapter
+    - BlueStackGoogleAdapter
+    - Equativ-Display-SDK
+    - Google-Mobile-Ads-SDK
+    - GoogleUserMessagingPlatform
+    - OMSDK_Appodeal
+    - PrebidMobile
+
+EXTERNAL SOURCES:
+  bluestack_sdk_flutter:
+    :path: ".symlinks/plugins/bluestack_sdk_flutter/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  AppLovinSDK: 730be87bac90c5b0f7d507c3a2530213f7685370
+  BidMachine: 635d477279887bf672eb4ea10bb9a4fe5bc3039b
+  BlueStack-SDK: 733b62353c4ea78346064cf5f313fc266ae01ccb
+  bluestack_sdk_flutter: f83f01f65d7b8b684760e653fa431e4742ff0bff
+  BlueStackAppLovinAdapter: 8bc7a2c1c3bc2c5d016644af5dc288598329aabb
+  BlueStackBiddingAdapter: 48d2ae995632eb8ea2e9d9384cbe03cf79922c90
+  BlueStackBidMachineAdapter: d050cf05a1fb26f53a19de79788977d7d0b87eaf
+  BlueStackEquativAdapter: 1d74ef305786ef3bf964d4e3e09f1b7d17b167e5
+  BlueStackGoogleAdapter: acd34bbfaf7d71acad54a47413b79ace9f2357ce
+  Equativ-Display-SDK: 91df7f89f324563b17eba70efd7dc80e426a5568
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  Google-Mobile-Ads-SDK: 2171620c6497804b57dc88b95644cc82e7dfb5b0
+  GoogleUserMessagingPlatform: befe603da6501006420c206222acd449bba45a9c
+  OMSDK_Appodeal: a8140ec3e79872f39a3e52d3f279122fa9dfb245
+  PrebidMobile: 8b9cab1df33115d2797dffa8689c9f0828358870
+
+PODFILE CHECKSUM: b3ef432cf73a3af8397d598215676ba514f36982
+
+COCOAPODS: 1.15.2

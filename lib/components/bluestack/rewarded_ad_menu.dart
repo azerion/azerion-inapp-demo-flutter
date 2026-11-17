@@ -1,6 +1,8 @@
-import 'package:bluestack_demo_flutter/components/loading_indicator.dart';
-import 'package:bluestack_demo_flutter/config/app_config.dart';
-import 'package:bluestack_demo_flutter/services/logger_service.dart';
+import 'dart:async';
+
+import 'package:bluestack_flutter_demo/components/loading_indicator.dart';
+import 'package:bluestack_flutter_demo/config/app_config.dart';
+import 'package:bluestack_flutter_demo/services/logger_service.dart';
 import 'package:bluestack_sdk_flutter/bluestack_sdk_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -64,32 +66,32 @@ class _RewardedAdMenuState extends State<RewardedAdMenu> {
 
   void _setupAdLoadCallbacks() {
     // Rewarded ad load callbacks
-    _rewardedAd?.setLoadEventListener(RewardedAdLoadEventListener(
-      onAdLoaded: _handleRewardedLoaded,
-      onAdFailedToLoad: _handleRewardedFailedToLoad,
-    ));
+    _rewardedAd?.setLoadEventListener(
+      RewardedAdLoadEventListener(
+        onAdLoaded: _handleRewardedLoaded,
+        onAdFailedToLoad: _handleRewardedFailedToLoad,
+      ),
+    );
   }
 
   void _setupAdShowCallbacks() {
     // Rewarded ad show callbacks
-    _rewardedAd?.setShowEventListener(RewardedAdShowEventListener(
-      onAdDisplayed: _handleRewardedDisplayed,
-      onAdFailedToDisplay: _handleRewardedFailedToDisplay,
-      onAdDismissed: _handleRewardedDismissed,
-      onAdClicked: _handleRewardedClicked,
-      onRewarded: _handleRewardEarned,
-    ));
+    _rewardedAd?.setShowEventListener(
+      RewardedAdShowEventListener(
+        onAdDisplayed: _handleRewardedDisplayed,
+        onAdFailedToDisplay: _handleRewardedFailedToDisplay,
+        onAdDismissed: _handleRewardedDismissed,
+        onAdClicked: _handleRewardedClicked,
+        onRewarded: _handleRewardEarned,
+      ),
+    );
   }
 
   void _loadRewardedAd() {
     _setupAdLoadCallbacks();
     setState(() => _isLoadingRewarded = true);
     LoggerService.showLog(this, 'Loading Rewarded ad...');
-    _loadRewardedAdAsync();
-  }
-
-  Future<void> _loadRewardedAdAsync() async {
-    await _rewardedAd?.load(options: _options);
+    unawaited(_rewardedAd?.load(options: _options));
   }
 
   Future<void> _showRewardedAd() async {

@@ -28,8 +28,9 @@ class LoggerNotifier extends StateNotifier<List<LogEntry>> {
 }
 
 // StateNotifierProvider to provides access to the LoggerNotifier
-final loggerProvider =
-    StateNotifierProvider<LoggerNotifier, List<LogEntry>>((ref) {
+final loggerProvider = StateNotifierProvider<LoggerNotifier, List<LogEntry>>((
+  ref,
+) {
   return LoggerNotifier();
 });
 

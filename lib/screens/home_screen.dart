@@ -1,7 +1,7 @@
-import 'package:bluestack_demo_flutter/components/loading_indicator.dart';
-import 'package:bluestack_demo_flutter/config/app_config.dart';
-import 'package:bluestack_demo_flutter/providers/bluestack_provider.dart';
-import 'package:bluestack_demo_flutter/services/logger_service.dart';
+import 'package:bluestack_flutter_demo/components/loading_indicator.dart';
+import 'package:bluestack_flutter_demo/config/app_config.dart';
+import 'package:bluestack_flutter_demo/providers/bluestack_provider.dart';
+import 'package:bluestack_flutter_demo/services/logger_service.dart';
 import 'package:bluestack_sdk_flutter/bluestack_sdk_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -1,9 +1,13 @@
-import 'package:bluestack_demo_flutter/components/drawer/log_drawer.dart';
-import 'package:bluestack_demo_flutter/components/drawer/menu_drawer.dart';
-import 'package:bluestack_demo_flutter/providers/bluestack_provider.dart';
-import 'package:bluestack_demo_flutter/screens/bluestack_screen.dart';
-import 'package:bluestack_demo_flutter/screens/home_screen.dart';
-import 'package:bluestack_demo_flutter/screens/settings_screen.dart';
+import 'dart:async';
+
+import 'package:bluestack_flutter_demo/components/drawer/log_drawer.dart';
+import 'package:bluestack_flutter_demo/components/drawer/menu_drawer.dart';
+import 'package:bluestack_flutter_demo/internal/internal_features.dart';
+import 'package:bluestack_flutter_demo/providers/bluestack_provider.dart';
+import 'package:bluestack_flutter_demo/screens/banner_screen.dart';
+import 'package:bluestack_flutter_demo/screens/bluestack_screen.dart';
+import 'package:bluestack_flutter_demo/screens/home_screen.dart';
+import 'package:bluestack_flutter_demo/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -18,20 +22,25 @@ class BlueStackApp extends ConsumerStatefulWidget {
     initialLocation: '/',
     routes: [
       ShellRoute(
-        builder: (_, __, child) => _AppShell(child: child),
+        builder: (_, _, child) => _AppShell(child: child),
         routes: [
           GoRoute(
             path: '/',
-            builder: (_, __) => const HomeScreen(),
+            builder: (_, _) => const HomeScreen(),
           ),
           GoRoute(
             path: '/bluestack',
-            builder: (_, __) => const BlueStackScreen(),
+            builder: (_, _) => const BlueStackScreen(),
+          ),
+          GoRoute(
+            path: '/banner',
+            builder: (_, _) => const BannerScreen(),
           ),
           GoRoute(
             path: '/settings',
-            builder: (_, __) => const SettingsScreen(),
+            builder: (_, _) => const SettingsScreen(),
           ),
+          ...internalFeatures.map((feature) => feature.route),
         ],
       ),
     ],
@@ -45,7 +54,7 @@ class _BlueStackAppState extends ConsumerState<BlueStackApp> {
   @override
   void initState() {
     super.initState();
-    _initializeBlueStack();
+    unawaited(_initializeBlueStack());
   }
 
   Future<void> _initializeBlueStack() async {
@@ -101,12 +110,7 @@ class __AppShellState extends State<_AppShell> {
         ],
       ),
       endDrawer: const LogDrawer(),
-      body: Stack(
-        children: [
-          widget.child,
-          const SizedBox(height: 20),
-        ],
-      ),
+      body: widget.child,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:bluestack_flutter_demo/internal/internal_features.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -41,6 +42,14 @@ class MenuDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
+                    title: const Text('Banners'),
+                    leading: const Icon(Icons.view_carousel),
+                    onTap: () {
+                      context.go('/banner');
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
                     title: const Text('Settings'),
                     leading: const Icon(Icons.settings),
                     onTap: () {
@@ -48,14 +57,16 @@ class MenuDrawer extends StatelessWidget {
                       Navigator.pop(context);
                     },
                   ),
+                  for (final feature in internalFeatures)
+                    ListTile(
+                      title: Text(feature.title),
+                      leading: Icon(feature.icon),
+                      onTap: () {
+                        context.go(feature.route.path);
+                        Navigator.pop(context);
+                      },
+                    ),
                 ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text(
-                'Version 1.0.0',
-                style: TextStyle(color: Colors.grey),
               ),
             ),
           ],

@@ -1,5 +1,0 @@
-arb-dir: lib/src/localization
-template-arb-file: app_en.arb
-output-localization-file: app_localizations.dart
-# Avoid deprecated synthetic package output (package:flutter_gen).
-synthetic-package: false

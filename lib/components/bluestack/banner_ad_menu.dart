@@ -1,11 +1,9 @@
-import 'dart:io';
+import 'dart:async';
 
-import 'package:bluestack_demo_flutter/config/app_config.dart';
-import 'package:bluestack_demo_flutter/services/logger_service.dart';
+import 'package:bluestack_flutter_demo/config/app_config.dart';
+import 'package:bluestack_flutter_demo/services/logger_service.dart';
 import 'package:bluestack_sdk_flutter/bluestack_sdk_flutter.dart';
 import 'package:flutter/material.dart';
-
-final String bsAppId = Platform.isIOS ? '3180317' : '1259479';
 
 class BannerAdMenu extends StatefulWidget {
   const BannerAdMenu({super.key});
@@ -48,7 +46,7 @@ class _BannerAdMenuState extends State<BannerAdMenu> {
   /// Loads the banner ad using the current [RequestOptions].
   void _loadBannerAd() {
     LoggerService.showLog(this, 'Loading banner ad...');
-    _bannerViewKey.currentState?.load(options: _options);
+    unawaited(_bannerViewKey.currentState?.load(options: _options));
   }
 
   /// Toggles the visibility of the banner ad.
@@ -59,14 +57,14 @@ class _BannerAdMenuState extends State<BannerAdMenu> {
 
   /// Starts or stops the automatic refresh of the banner ad.
   void _toggleBannerAdRefresh() {
-    _bannerViewKey.currentState?.toggleRefresh(!_isBannerRefreshing);
+    unawaited(_bannerViewKey.currentState?.toggleRefresh(!_isBannerRefreshing));
     setState(() => _isBannerRefreshing = !_isBannerRefreshing);
   }
 
   /// Destroys the banner ad and releases its resources.
   void _destroyBannerAd() {
     LoggerService.showLog(this, 'Destroying Banner ad');
-    _bannerViewKey.currentState?.destroy();
+    unawaited(_bannerViewKey.currentState?.destroy());
     setState(() {
       _isBannerVisible = false;
       _isBannerRefreshing = false;
@@ -100,7 +98,8 @@ class _BannerAdMenuState extends State<BannerAdMenu> {
                 ElevatedButton(
                   onPressed: _toggleBannerAdRefresh,
                   child: Text(
-                      _isBannerRefreshing ? 'Stop Refresh' : 'Start Refresh'),
+                    _isBannerRefreshing ? 'Stop Refresh' : 'Start Refresh',
+                  ),
                 ),
               ],
             ),

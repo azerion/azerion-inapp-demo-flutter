@@ -1,5 +1,5 @@
-import 'package:bluestack_demo_flutter/app.dart';
-import 'package:bluestack_demo_flutter/services/logger_service.dart';
+import 'package:bluestack_flutter_demo/app.dart';
+import 'package:bluestack_flutter_demo/services/logger_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,5 +1,5 @@
-import 'package:bluestack_demo_flutter/config/app_config.dart';
-import 'package:bluestack_demo_flutter/services/logger_service.dart';
+import 'package:bluestack_flutter_demo/config/app_config.dart';
+import 'package:bluestack_flutter_demo/services/logger_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,8 +38,9 @@ class SettingsScreen extends ConsumerWidget {
                   LoggerService.log('Debug mode toggled: $value');
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content:
-                          Text('Debug mode setting will be implemented soon'),
+                      content: Text(
+                        'Debug mode setting will be implemented soon',
+                      ),
                     ),
                   );
                 },

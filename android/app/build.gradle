@@ -1,5 +1,3 @@
-import java.util.Properties
-
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -7,22 +5,11 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file("local.properties")
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withInputStream { localProperties.load(it) }
-}
-
-// def resolvedFlutterNdkVersion = localProperties.getProperty("flutter.ndkVersion")?.trim()
-// if (!resolvedFlutterNdkVersion) {
-//     resolvedFlutterNdkVersion = flutter.ndkVersion
-// }
-
 android {
     namespace = "com.azerion.ads.testapp.flutter"
-    // Explicitly compile against Android SDK 35 to satisfy media3 and bluestack_sdk_flutter requirements.
-    compileSdk = 35
-    ndkVersion = localProperties.getProperty("flutter.ndkVersion") ?: flutter.ndkVersion
+    // bluestack_sdk_flutter compiles against Android SDK 36.
+    compileSdk = 36
+    ndkVersion = flutter.ndkVersion
    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -35,10 +22,11 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.azerion.ads.testapp.flutter"
+        applicationId = "com.azerion.ads.testapp.flutterdemo"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 23
+        // The AppLovin adapter needs API 24.
+        minSdk = 24
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -63,11 +51,15 @@ repositories {
     maven {
         url "https://packagecloud.io/smartadserver/android/maven2" 
     }
+    maven {
+        url "https://artifactory.bidmachine.io/bidmachine"
+    }
 }
 
 dependencies {
-    implementation 'com.azerion:bluestack-mediation-bidding:5.1.4.0'
-    implementation 'com.azerion:bluestack-mediation-google:5.1.4.0'
-    implementation 'com.azerion:bluestack-mediation-equativ:5.2.1.0'
-
+    implementation 'com.azerion:bluestack-mediation-bidding:6.0.6.2'
+    implementation 'com.azerion:bluestack-mediation-google:6.1.0.1'
+    implementation 'com.azerion:bluestack-mediation-equativ:6.0.0.4'
+    implementation 'com.azerion:bluestack-mediation-bidmachine:6.1.0.1'
+    implementation 'com.azerion:bluestack-mediation-applovin:6.1.0.0'
 }

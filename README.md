@@ -1,86 +1,49 @@
-# BlueStack Flutter SDK Demo
+# BlueStack Flutter Demo
 
-A Flutter demo app showcasing ad integration and key features of the BlueStack Flutter SDK.
+A Flutter app that shows how to integrate the [BlueStack Flutter SDK](https://pub.dev/packages/bluestack_sdk_flutter) (`bluestack_sdk_flutter` on pub.dev) and its ad formats.
 
-## Features
+## What the app shows
 
-- Navigation drawer with multiple screens
-- BlueStack SDK integration
-- Banner, Interstitial, and Rewarded ads support
-- Settings management
-- Log viewer functionality
+- **Home:** SDK initialisation and an MREC banner.
+- **BlueStack Ads:** banner, interstitial and rewarded ads, each loaded and shown on demand.
+- **Banners:** every banner size in its own tab: Standard, Full, Large, Leaderboard and MREC.
+- **Settings:** the app ID in use, debug logging, and clearing the log.
+- **Log drawer:** the SDK's ad events as they happen, opened from the app bar.
 
-## Getting Started
+Mediation runs through the BlueStack adapters for Google, Equativ, BidMachine and AppLovin. The adapters are declared in `android/app/build.gradle` and `ios/Podfile`. No network keys are needed in the app: the networks are configured in the BlueStack account.
 
-### Prerequisites
+## Requirements
 
-- Flutter SDK (latest stable version)
-- Android Studio / Xcode for mobile development
-- A physical device or emulator
+- Flutter 3.35.x (3.35.7 is pinned in `.fvmrc` for [FVM](https://fvm.app)). Newer Flutter releases need Gradle 8.14 or newer.
+- Android: minSdk 24 (the AppLovin adapter needs it), compileSdk 36
+- iOS: 15.0 or newer, Xcode 27 with CocoaPods 1.16 or newer
+- A device, emulator or simulator
 
-### Installation
+## Run it
 
-1. Clone the repository
-2. Navigate to the project directory:
-   ```bash
-   cd bluestack-demo-flutter
-   ```
-3. Install dependencies:
-   ```bash
-   flutter pub get
-   ```
-4. Run the app:
-   ```bash
-   flutter run
-   ```
-
-## Project Structure
-
-```
-lib/
-├── app.dart                    # Main app configuration and routing
-├── main.dart                   # Entry point
-├── components/                 # Reusable UI components
-│   ├── bluestack/
-│   │   ├── banner_ad_menu.dart
-│   │   ├── interstitial_ad_menu.dart
-│   │   └── rewarded_ad_menu.dart
-│   └── drawer/
-│       ├── log_drawer.dart
-│       └── menu_drawer.dart
-├── config/
-│   └── app_config.dart         # App configuration constants
-├── providers/
-│   └── bluestack_provider.dart # State management
-├── screens/                    # App screens
-│   ├── home_screen.dart
-│   ├── bluestack_screen.dart
-│   └── settings_screen.dart
-├── services/
-│   └── logger_service.dart     # Logging functionality
-└── src/
-    └── localization/
-        └── app_en.arb          # Localization strings
+```bash
+flutter pub get
+flutter run
 ```
 
-## State Management
+The SDK comes from pub.dev; `pubspec.lock` records the exact version this demo was tested with.
 
-The app uses Flutter Riverpod for state management, providing a clean and efficient way to handle app state and dependencies.
+On iOS the project signs with Azerion's development team. To run it on your own device, choose your team and a bundle ID of your own under *Signing & Capabilities* in Xcode.
 
-## Navigation
+## Integration points
 
-Navigation is handled using Go Router, providing a declarative routing approach with support for deep linking and nested navigation.
+| What | Where |
+|---|---|
+| SDK initialisation and privacy settings | `lib/providers/bluestack_provider.dart` |
+| App IDs and request options (placement IDs are built from the app ID where each ad loads) | `lib/config/app_config.dart` |
+| Banner ads | `lib/components/bluestack/banner_ad_menu.dart`, `lib/screens/banner_screen.dart` |
+| Interstitial ads | `lib/components/bluestack/interstitial_ad_menu.dart` |
+| Rewarded ads | `lib/components/bluestack/rewarded_ad_menu.dart` |
+| Android mediation adapters and AdMob app ID | `android/app/build.gradle`, `android/app/src/main/AndroidManifest.xml` |
+| iOS mediation adapters and AdMob app ID | `ios/Podfile`, `ios/Runner/Info.plist` |
 
-## Assets
-
-The `assets` directory has images, fonts, and any other files you want to include with your application.
-The `assets/images` directory contains [resolution-aware images](https://flutter.dev/to/resolution-aware-images).
-
-## Localization
-
-This project generates localized messages based on arb files found in the `lib/src/localization` directory.
-To support additional languages, please visit the tutorial on [Internationalizing Flutter apps](https://flutter.dev/to/internationalization).
+The app uses [Riverpod](https://riverpod.dev) for state and [go_router](https://pub.dev/packages/go_router) for navigation; neither is required by the SDK.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License; see [LICENSE.md](LICENSE.md).

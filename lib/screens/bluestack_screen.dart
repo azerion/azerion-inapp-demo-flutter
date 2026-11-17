@@ -1,8 +1,8 @@
-import 'package:bluestack_demo_flutter/components/bluestack/banner_ad_menu.dart';
-import 'package:bluestack_demo_flutter/components/bluestack/interstitial_ad_menu.dart';
-import 'package:bluestack_demo_flutter/components/bluestack/rewarded_ad_menu.dart';
-import 'package:bluestack_demo_flutter/components/loading_indicator.dart';
-import 'package:bluestack_demo_flutter/providers/bluestack_provider.dart';
+import 'package:bluestack_flutter_demo/components/bluestack/banner_ad_menu.dart';
+import 'package:bluestack_flutter_demo/components/bluestack/interstitial_ad_menu.dart';
+import 'package:bluestack_flutter_demo/components/bluestack/rewarded_ad_menu.dart';
+import 'package:bluestack_flutter_demo/components/loading_indicator.dart';
+import 'package:bluestack_flutter_demo/providers/bluestack_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
